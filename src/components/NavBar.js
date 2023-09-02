@@ -11,14 +11,20 @@ function NavBar() {
           <h1 className="text-[25px]  font-bold text-violet-600">Estatery</h1>
         </div>
         <div className="w-[70%] h-full  flex flex-row items-center justify-around">
-          <h1 className="text-[15px] font-semibold">Rent</h1>
-          <h1 className="text-[15px] font-semibold">Buy</h1>
-          <h1 className="text-[15px] font-semibold">Sell</h1>
-          <div className="w-[32%] h-full flex flex-row items-center justify-around">
-            <h1 className="text-[15px] font-semibold">Manage Resourse</h1>
+          <button className="text-[15px] hover:bg-violet-400  font-semibold">
+            Rent
+          </button>
+          <button className="text-[15px] hover:bg-violet-400  font-semibold">
+            Buy
+          </button>
+          <button className="text-[15px] hover:bg-violet-400  font-semibold">
+            Sell
+          </button>
+          <div className="w-[32%] hover:bg-violet-400  h-[15%] flex flex-row items-center justify-around">
+            <h1 className="text-[15px]  font-semibold">Manage Resourse</h1>
             <IoIosArrowDown size={20} />
           </div>
-          <div className="w-[20%] h-full flex flex-row items-center justify-around">
+          <div className="w-[20%] hover:bg-violet-400  h-[15%] flex flex-row items-center justify-around">
             <h1 className="text-[15px] font-semibold">Resources</h1>
 
             <IoIosArrowDown size={20} />
