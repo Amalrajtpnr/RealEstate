@@ -26,12 +26,12 @@ function NavBar() {
         </div>
       </div>
       <div className="w-[25%] h-full flex flex-row items-center justify-around  ">
-        <button className="w-[35%] h-[40%] rounded-md border border-violet-600 text-[15px] font-semibold">
+        <button className="w-[35%] h-[40%] rounded-md border hover:bg-violet-400 border-violet-600 text-[15px] font-semibold">
           Login
         </button>
-        <button className="w-[35%] h-[40%] rounded-md border border-violet-600 text-[15px] font-semibold">
-        Signup
-      </button>
+        <button className="w-[35%] h-[40%] rounded-md border hover:bg-violet-400 border-violet-600 text-[15px] font-semibold">
+          Signup
+        </button>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
   const [selectedPropertyType, setSelectedPropertyType] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [filterApplied, setFilterApplied] = useState(false);
 
   const cardData = [
@@ -20,8 +21,10 @@ function App() {
       location: "Palm Harbor",
       address: "2699 Grace Valley, Highland Lake, FL",
       beds: "3 Beds",
-      dateProperty: "2023-09-15", // Replace with actual date property
-      propertyType: "Houses", // Replace with actual property type
+      dateProperty: "2023-09-15",
+      propertyType: "Houses",
+      bathrooms: "2",
+      dimensions: "6 x 7.5 m2",
     },
     {
       imageUrl: "/home.jpg",
@@ -29,11 +32,57 @@ function App() {
       location: "Miami Beach",
       address: "123 Ocean Drive, Miami Beach, FL",
       beds: "2 Beds",
-      dateProperty: "2023-09-20", // Replace with actual date property
-      propertyType: "Apartments", // Replace with actual property type
+      dateProperty: "2023-09-20",
+      propertyType: "Apartments",
+      bathrooms: "1",
+      dimensions: "5 x 6 m2",
     },
-    // Add more data as needed
+    {
+      imageUrl: "/home3.jpeg",
+      price: "$3200/month",
+      location: "Los Angeles",
+      address: "456 Sunset Blvd, Los Angeles, CA",
+      beds: "4 Beds",
+      dateProperty: "2023-09-10",
+      propertyType: "Houses",
+      bathrooms: "3",
+      dimensions: "7 x 8 m2",
+    },
+    {
+      imageUrl: "/home4.jpeg",
+      price: "$2100/month",
+      location: "San Francisco",
+      address: "789 Hilltop Drive, San Francisco, CA",
+      beds: "2 Beds",
+      dateProperty: "2023-09-25",
+      propertyType: "Apartments",
+      bathrooms: "1",
+      dimensions: "5.5 x 7.5 m2",
+    },
+    {
+      imageUrl: "/home5.jpg",
+      price: "$2800/month",
+      location: "Chicago",
+      address: "1011 Park Avenue, Chicago, IL",
+      beds: "3 Beds",
+      dateProperty: "2023-09-05",
+      propertyType: "Houses",
+      bathrooms: "2",
+      dimensions: "6.5 x 8 m2",
+    },
+    {
+      imageUrl: "/home6.jpg",
+      price: "$1900/month",
+      location: "Austin",
+      address: "1313 Oak Street, Austin, TX",
+      beds: "2 Beds",
+      dateProperty: "2023-09-30",
+      propertyType: "Apartments",
+      bathrooms: "1",
+      dimensions: "5 x 6 m2",
+    },
   ];
+  
 
   const handleFilterClick = () => {
     setFilterApplied(true);
@@ -55,12 +104,19 @@ function App() {
       const [minPrice, maxPrice] = selectedPriceRange.split("-");
       const cardPrice = parseInt(card.price.replace(/[^0-9]/g, ""), 10);
 
-      if (cardPrice < parseInt(minPrice, 10) || cardPrice > parseInt(maxPrice, 10)) {
+      if (
+        cardPrice < parseInt(minPrice, 10) ||
+        cardPrice > parseInt(maxPrice, 10)
+      ) {
         return false;
       }
     }
 
     if (selectedPropertyType && card.propertyType !== selectedPropertyType) {
+      return false;
+    }
+
+    if (selectedLocation && card.location !== selectedLocation) {
       return false;
     }
 
@@ -87,9 +143,17 @@ function App() {
         <div className="w-full min-h-[20%] bg-white flex flex-row items-center justify-around ">
           <div className="w-[18%] h-[90%] border-r-4 flex flex-col items-start justify-around px-[10px]">
             <h1 className="text-[15px] font-normal text-gray-400">Location</h1>
-            <button className="text-[18px] font-semibold ">
-              New York, USA
-            </button>
+            <select
+              value={selectedLocation}
+              onChange={(e) => setSelectedLocation(e.target.value)}
+              className="w-[75%] h-full focus:outline-none"
+            >
+              <option value="">All</option>
+              <option value="Palm Harbor">Palm Harbor</option>
+              <option value="Miami Beach">Miami Beach</option>
+              <option value="Los Angeles">Los Angeles</option>
+              {/* Add more location options as needed */}
+            </select>
           </div>
           <div className="w-[18%] h-[90%] border-r-4 flex flex-col items-start justify-around px-[10px]">
             <h1 className="text-[15px] font-normal text-gray-400">When</h1>
@@ -133,17 +197,21 @@ function App() {
                 <option value="">All</option>
                 <option value="Houses">Houses</option>
                 <option value="Apartments">Apartments</option>
+                <option value="Condos">Condos</option>
                 {/* Add more property type options as needed */}
               </select>
             </div>
           </div>{" "}
           <div className="w-[12%] h-[55%] bg-violet-600 rounded-[10px] flex flex-col items-center justify-around px-[10px]">
-            <h1 className="text-[16px] font-semibold text-white" onClick={handleFilterClick}>
+            <h1
+              className="text-[16px] font-semibold text-white"
+              onClick={handleFilterClick}
+            >
               Search
             </h1>
           </div>{" "}
         </div>
-        <div className="w-full min-h-60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
+        <div className="w-full min-h-60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 mt-4">
           {filteredCards.map((data, index) => (
             <Card key={index} {...data} />
           ))}
