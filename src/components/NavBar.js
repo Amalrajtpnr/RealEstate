@@ -1,13 +1,13 @@
 import React from "react";
-import { TbMailOpened } from "react-icons/tb";
+import { BsFillBuildingsFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 
 function NavBar() {
   return (
-    <div className="w-full min-h-[20%] bg-white flex flex-row items-center justify-between overflow-hidden ">
+    <div className="w-full min-h-[20%] bg-white flex flex-row items-center justify-between overflow-hidden px-[20px]">
       <div className="w-[60%] h-full flex flex-row items-center justify-around ">
         <div className="w-[20%] h-full   flex flex-row items-center justify-around">
-          <TbMailOpened size={30} color="purple" />
+          <BsFillBuildingsFill size={35} color="violet" />
           <h1 className="text-[25px]  font-bold text-violet-600">Estatery</h1>
         </div>
         <div className="w-[70%] h-full  flex flex-row items-center justify-around">

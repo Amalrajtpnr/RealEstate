@@ -13,6 +13,7 @@ function App() {
   const [selectedPropertyType, setSelectedPropertyType] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [filterApplied, setFilterApplied] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const cardData = [
     {
@@ -82,7 +83,6 @@ function App() {
       dimensions: "5 x 6 m2",
     },
   ];
-  
 
   const handleFilterClick = () => {
     setFilterApplied(true);
@@ -120,6 +120,13 @@ function App() {
       return false;
     }
 
+    if (searchQuery) {
+      const cardName = card.location.toLowerCase();
+      if (!cardName.includes(searchQuery.toLowerCase())) {
+        return false;
+      }
+    }
+
     return true;
   });
 
@@ -136,6 +143,8 @@ function App() {
               type="text"
               className="w-[75%] h-full  focus:outline-none"
               placeholder="Search with search Bar"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <IoIosArrowDown size={20} />
           </div>
@@ -202,7 +211,7 @@ function App() {
               </select>
             </div>
           </div>{" "}
-          <div className="w-[12%] h-[55%] bg-violet-600 rounded-[10px] flex flex-col items-center justify-around px-[10px]">
+          <div className="w-[10%] h-[35%] bg-violet-600 rounded-[10px] flex flex-col items-center justify-around px-[10px]">
             <h1
               className="text-[16px] font-semibold text-white"
               onClick={handleFilterClick}
